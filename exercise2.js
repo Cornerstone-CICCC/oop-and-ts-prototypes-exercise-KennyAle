@@ -4,12 +4,30 @@
 // 2. Create another constructor function called "Smartphone" that inherits from Device, and add a "model" property to Smartphone.
 // 3. Add a method "call" to Smartphone's prototype that logs "Calling from [brand] [model]..."
 
+function Device (brand) {
+    this._brand = brand
+}
+
+Device.prototype.powerOn = function () {
+    console.log(
+        `${this._brand} device is now powered on`
+    );
+}
+
+function Smartphone (brand, model) {
+    Device.call(this, brand)
+    this._model = model
+}
+
+Object.setPrototypeOf(Smartphone.prototype, Device.prototype)
 
 
-// YOUR CODE HERE
-
-
-
+Smartphone.prototype.call = function () {
+    console.log(
+        `Calling from ${this._brand} ${this._model}...`
+    );
+    
+}
 
 // Test the Smartphone prototype with inheritance
 const myPhone = new Smartphone("Apple", "iPhone 14");
